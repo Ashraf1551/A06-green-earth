@@ -107,7 +107,7 @@ const displayAllCategories = (categories) => {
     btnDiv.innerHTML = `
     <button
     id="category-btn-${category.id}" onclick="loadCategoryPlants(${category.id})"
-    class="text-[#1F2937] font-semibold text-md px-1 border border-green-500 hover:bg-green-700 w-full text-left py-2 rounded-lg cursor-pointer hover:text-white category-btn">${category.category_name}</button>
+    class="text-[#1F2937] font-semibold text-md px-1 border border-green-500 hover:bg-green-700 w-36 lg:w-full text-center lg:text-left py-2 rounded-lg cursor-pointer hover:text-white category-btn">${category.category_name}</button>
     `;
     categoryContainer.appendChild(btnDiv);
   }
