@@ -1,6 +1,3 @@
-let cart = [];
-
-
 const loadAllCategories = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
     .then((res) => res.json())
@@ -141,71 +138,70 @@ const showDetails = (de) => {
 };
 
 
+
+
+let cart = {};
+
+
 function addToCart(plantName, plantPrice) {
+  if (cart[plantName]) {
+    cart[plantName].quantity += 1;
+  } else {
+    cart[plantName] = {
+      price: plantPrice,
+      quantity: 1
+    };
+  }
 
-  alert(`${plantName} has been added to the cart!`);
-
-  
-  cart.push({
-    name: plantName,
-    price: plantPrice
-  });
-  
-  
+  alert(`${plantName} added to the cart!`);
   showCart();
 }
 
 
 function showCart() {
   const cartContainer = document.getElementById("add-to-cart-container");
-  
-  
-  let cartHTML = '<h2 class="font-bold text-2xl">Your Cart</h2>';
-  
- 
-  if (cart.length === 0) {
-    cartHTML += '<p class="text-gray-500 text-sm mt-2">Your cart is empty</p>';
-  } else {
-   
-    for (let i = 0; i < cart.length; i++) {
-      cartHTML += `
-        <div class="border-b py-2 flex justify-between items-center">
-          <div>
-            <p class="text-sm">${cart[i].name}</p>
-            <p class="text-sm font-bold">৳${cart[i].price}</p>
-          </div>
-          <button onclick="deleteItem(${i})" class="text-red-500 hover:text-red-700 text-sm">
-            Delete
-          </button>
+  cartContainer.innerHTML = '<h2 class="font-bold text-2xl">Your Cart</h2>';
+
+  const cartKeys = Object.keys(cart);
+
+  if (cartKeys.length === 0) {
+    cartContainer.innerHTML += '<p class="text-gray-500 text-sm mt-2">Your cart is empty</p>';
+    return;
+  }
+
+  let total = 0;
+
+  cartKeys.forEach(name => {
+    const item = cart[name];
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+
+    cartContainer.innerHTML += `
+      <div class="border-b py-2 flex justify-between items-center">
+        <div>
+          <p class="text-sm">${name}</p>
+          <p class="text-sm font-bold">৳${item.price} x ${item.quantity} = ৳${itemTotal}</p>
         </div>
-      `;
-    }
-    
-    
-    let total = 0;
-    for (let i = 0; i < cart.length; i++) {
-      total = total + cart[i].price;
-    }
-    
-    
-    cartHTML += `
-      <div class="border-t-2 border-green-500 pt-2 mt-2">
-        <p class="font-bold text-lg">Total: ৳${total}</p>
+        <button onclick="deleteItem('${name}')" class="text-red-500 hover:text-red-700 text-sm">
+          Delete
+        </button>
       </div>
     `;
-  }
-  
-  cartContainer.innerHTML = cartHTML;
+  });
+
+  cartContainer.innerHTML += `
+    <div class="border-t-2 border-green-500 pt-2 mt-2">
+      <p class="font-bold text-lg">Total: ৳${total}</p>
+    </div>
+  `;
 }
 
 
-function deleteItem(index) {
-  
-  cart.splice(index, 1);
-  
-
+function deleteItem(plantName) {
+  delete cart[plantName];
   showCart();
 }
+
 
 loadAllCategories();
 loadAllPlants();
