@@ -17,9 +17,9 @@ const displayAllPlants = (plants) => {
   for (let plant of plants) {
     const card = document.createElement("div");
     card.innerHTML= `
-    <div class="bg-white p-1 lg:p-4 rounded-xl">
+    <div class="bg-white p-1 lg:p-4 rounded-xl shadow-md">
               <figure class="bg-gray-200 rounded-xl">
-                <img src="${plant.image}" alt="${plant.name}" class="rounded-xl" />
+                <img src="${plant.image}" alt="${plant.name}" class="rounded-xl h-48 object-cover w-full" />
               </figure>
               <h3 class="font-semibold text-base my-3">${plant.name} </h3>
               <p class="text-gray-700 text-xs">
@@ -45,6 +45,7 @@ const displayAllPlants = (plants) => {
   }
 };
 
+// category wise load
 const loadCategoryPlant = (id) => {
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
@@ -57,6 +58,7 @@ const loadCategoryPlant = (id) => {
     });
 };
 
+// category wise display
 const displayCategoryPlant = () =>{
 
 }
@@ -68,7 +70,7 @@ const displayAllCategories = (categories) => {
   for (let category of categories) {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-    <button class="text-[#1F2937] font-normal text-sm px-1 hover:bg-green-700 w-full text-left py-2 rounded-lg cursor-pointer hover:text-white">${category.category_name}</button>
+    <button class="text-[#1F2937] font-normal text-sm px-1 border border-green-500 hover:bg-green-700 w-full text-left py-2 rounded-lg cursor-pointer hover:text-white">${category.category_name}</button>
     `;
 
     categoryContainer.appendChild(btnDiv);
