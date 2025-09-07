@@ -84,15 +84,26 @@
       </figure>
     </section>
 
+    <section>
+      <!-- Open the modal using ID.showModal() method -->
+      <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+      <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+          <div id="details-cont"></div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button class="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+    </section>
     <!-- loading data into main tag -->
     <main class="w-11/12 mx-auto">
       <h1 class="font-semibold text-center text-3xl py-9">Choose Your Trees</h1>
 
       <section class="grid lg:grid-cols-7 gap-6">
-        <!-- <div
-          id="category-container"
-          class="flex justify-center justify-between gap-x-4 flex-wrap lg:block space-y-2"
-        > -->
         <div
           id="category-container"
           class="grid grid-cols-2 gap-x-2 space-y-2 lg:block"
@@ -107,7 +118,7 @@
           class="lg:col-span-5 grid lg:grid-rows-2 lg:grid-cols-3 gap-7"
         ></div>
 
-        <div class="bg-white rounded-lg p-2">
+        <div id="add-to-cart-container" class="bg-white rounded-lg p-2">
           <h2 class="font-bold text-2xl">Your Cart</h2>
         </div>
       </section>
@@ -224,6 +235,6 @@
     </footer>
 
     <script src="./index.js"></script>
-    <!-- <script src="./fixed.js"></script> -->
+    <!-- <script src="./raw.js"></script> -->
   </body>
 </html>
