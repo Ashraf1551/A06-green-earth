@@ -70,7 +70,7 @@ const displayAllCategories = (categories) => {
   for (let category of categories) {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-    <button class="text-[#1F2937] font-normal text-sm px-1 border border-green-500 hover:bg-green-700 w-full text-left py-2 rounded-lg cursor-pointer hover:text-white">${category.category_name}</button>
+    <button class="text-[#1F2937] font-semibold text-md px-1 border border-green-500 hover:bg-green-700 w-full text-center py-2 rounded-lg cursor-pointer hover:text-white">${category.category_name}</button>
     `;
 
     categoryContainer.appendChild(btnDiv);
