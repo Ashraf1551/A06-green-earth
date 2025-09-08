@@ -27,8 +27,8 @@ const displayAllPlants = (plants) => {
               <figure class="bg-gray-200 rounded-xl">
                 <img src="${plant.image}" alt="${plant.name}" class="rounded-xl h-48 object-cover w-full" />
               </figure>
-              <h3 onclick="loadTreeDetails(${plant.id})" class="font-semibold text-base my-3 cursor-pointer">${plant.name} </h3>
-              <p class="text-gray-700 text-xs">
+              <h3 onclick="loadTreeDescription(${plant.id})" class="font-semibold text-base my-3 cursor-pointer">${plant.name} </h3>
+              <p class="text-gray-700 text-xs h-16">
                 ${plant.description}
               </p>
               <div class="flex justify-between my-4">
@@ -75,7 +75,7 @@ const displayCategoryPlants = (plants) => {
               <figure class="bg-gray-200 rounded-xl">
                 <img src="${plant.image}" alt="${plant.name}" class="rounded-xl h-48 object-cover w-full" />
               </figure>
-              <h3 onclick="loadTreeDetails(${plant.id})" class="font-semibold text-base my-3 cursor-pointer">${plant.name} </h3>
+              <h3 onclick="loadTreeDescription(${plant.id})" class="font-semibold text-base my-3 cursor-pointer">${plant.name} </h3>
               <p class="text-gray-700 text-xs">
                 ${plant.description}
               </p>
@@ -113,35 +113,29 @@ const displayAllCategories = (categories) => {
   }
 };
 
-const loadTreeDetails = (id) => {
+const loadTreeDescription = (id) => {
   fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then((res) => res.json())
-    .then((d) => showDetails(d.plants));
+    .then((json) => showTreeDescription(json.plants));
 };
 
-const showDetails = (de) => {
-  console.log(de);
-
-  const detailsBox = document.getElementById("details-cont");
-  detailsBox.innerHTML = `
+const showTreeDescription = (plant) => {
+  const descriptionBox = document.getElementById("details-container");
+  descriptionBox.innerHTML = `
     <div class="space-y-2">
-               <h1 class="font-semibold text-2xl">${de.name} </h1>
-              <img class="w-full h-48 object-cover rounded-xl" src="${de.image} " alt="" />
-              <p><span class="font-bold">Category: </span>${de.category}</p>
-              <p><span class="font-bold">Price: </span>৳<span>${de.price}</span></p>
+               <h1 class="font-semibold text-2xl">${plant.name} </h1>
+              <img class="w-full h-48 object-cover rounded-xl" src="${plant.image} " alt="" />
+              <p><span class="font-bold">Category: </span>${plant.category}</p>
+              <p><span class="font-bold">Price: </span>৳<span>${plant.price}</span></p>
               <p>
-                <span class="font-bold">Description: </span> ${de.description}
+                <span class="font-bold">Description: </span> ${plant.description}
               </p>
              </div>
     `;
   document.getElementById("my_modal_5").showModal();
 };
 
-
-
-
 let cart = {};
-
 
 function addToCart(plantName, plantPrice) {
   if (cart[plantName]) {
@@ -153,7 +147,7 @@ function addToCart(plantName, plantPrice) {
     };
   }
 
-  alert(`${plantName} added to the cart!`);
+  alert(`${plantName} has been added to the cart!`);
   showCart();
 }
 
@@ -195,7 +189,6 @@ function showCart() {
     </div>
   `;
 }
-
 
 function deleteItem(plantName) {
   delete cart[plantName];
