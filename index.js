@@ -170,7 +170,7 @@ function addToCart(plantName, plantPrice) {
     };
   }
 
-  alert(`${plantName} tree has been added to the cart!`);
+  alert(`${plantName} has been added to the cart!`);
   showCart();
 }
 
