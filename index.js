@@ -76,7 +76,7 @@ const displayCategoryPlants = (plants) => {
                 <img src="${plant.image}" alt="${plant.name}" class="rounded-xl h-48 object-cover w-full" />
               </figure>
               <h3 onclick="loadTreeDescription(${plant.id})" class="font-semibold text-base my-3 cursor-pointer">${plant.name} </h3>
-              <p class="text-gray-700 text-xs">
+              <p class="text-gray-700 text-xs h-16">
                 ${plant.description}
               </p>
               <div class="flex justify-between my-4">
@@ -147,7 +147,7 @@ function addToCart(plantName, plantPrice) {
     };
   }
 
-  alert(`${plantName} has been added to the cart!`);
+  alert(`${plantName} tree has been added to the cart!`);
   showCart();
 }
 
