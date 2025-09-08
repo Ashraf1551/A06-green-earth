@@ -133,10 +133,12 @@ const displayAllCategories = (categories) => {
 };
 
 const loadTreeDescription = (id) => {
+  loadSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     .then((res) => res.json())
      .then((json) => {
       showTreeDescription(json.plants);
+      loadSpinner(false);
     })
 };
 
